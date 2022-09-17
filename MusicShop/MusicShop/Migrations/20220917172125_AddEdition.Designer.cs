@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicShop;
 
@@ -11,9 +12,10 @@ using MusicShop;
 namespace MusicShop.Migrations
 {
     [DbContext(typeof(MusicShopContext))]
-    partial class MusicShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220917172125_AddEdition")]
+    partial class AddEdition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,27 +51,6 @@ namespace MusicShop.Migrations
 
                     b.ToTable("Authors");
                 });
-
-            modelBuilder.Entity("MusicShop.Models.User", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
-
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                b.Property<string>("UserName")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
-
-                b.Property<string>("UserSurname")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
-
-                b.HasKey("Id");
-
-                b.ToTable("Users");
-            });
 
             modelBuilder.Entity("MusicShop.Models.Edition", b =>
                 {
