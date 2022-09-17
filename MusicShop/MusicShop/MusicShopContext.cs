@@ -4,7 +4,7 @@ namespace MusicShop
 {
     internal class MusicShopContext : DbContext
     {
-
+        public DbSet<Author> Authors { get; set; }
         public MusicShopContext() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -14,7 +14,7 @@ namespace MusicShop
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new AuthorConfiguration());
         }
     }
 }
