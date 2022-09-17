@@ -50,6 +50,27 @@ namespace MusicShop.Migrations
                     b.ToTable("Authors");
                 });
 
+            modelBuilder.Entity("MusicShop.Models.User", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                b.Property<string>("UserName")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("UserSurname")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.HasKey("Id");
+
+                b.ToTable("Users");
+            });
+
             modelBuilder.Entity("MusicShop.Models.Edition", b =>
                 {
                     b.Property<int>("Id")
