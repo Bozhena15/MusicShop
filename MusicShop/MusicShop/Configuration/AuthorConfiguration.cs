@@ -18,7 +18,7 @@ namespace MusicShop
 
             builder.Property(p => p.Name).IsRequired();
             builder.Property(p => p.Surname).IsRequired();
-            builder.Property(p => p.Pseudonym).IsRequired();
+            builder.Property(p => p.Pseudonym);
             builder.Property(p => p.Birthdaydate).IsRequired();
         }
     }
