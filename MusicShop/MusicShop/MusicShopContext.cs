@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MusicShop.Configuration;
+using MusicShop.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MusicShop
 {
-    internal class MusicShopContext : DbContext
+    public class MusicShopContext : DbContext
     {
-
+        public DbSet<User> Users { get; set; }
         public MusicShopContext() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -14,7 +16,7 @@ namespace MusicShop
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }
