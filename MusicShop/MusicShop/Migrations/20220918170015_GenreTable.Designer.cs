@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicShop;
 
@@ -11,9 +12,10 @@ using MusicShop;
 namespace MusicShop.Migrations
 {
     [DbContext(typeof(MusicShopContext))]
-    partial class MusicShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220918170015_GenreTable")]
+    partial class GenreTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,6 +73,23 @@ namespace MusicShop.Migrations
                     b.ToTable("Editions");
                 });
 
+            modelBuilder.Entity("MusicShop.Models.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("MusicStyle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("genres");
+                });
+
             modelBuilder.Entity("MusicShop.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -91,59 +110,6 @@ namespace MusicShop.Migrations
 
                     b.ToTable("Users");
                 });
-
-            modelBuilder.Entity("MusicShop.Models.UserOrder", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("PlateCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserOrder");
-                });
-
-            modelBuilder.Entity("MusicShop.Models.UserOrder", b =>
-                {
-                    b.HasOne("MusicShop.Models.User", "User")
-                        .WithMany("userOrders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MusicShop.Models.User", b =>
-                {
-                    b.Navigation("userOrders");
-                });
-            modelBuilder.Entity("MusicShop.Models.Genre", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
-
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                b.Property<string>("MusicStyle")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
-
-                b.HasKey("Id");
-
-                b.ToTable("Genres");
-            });
 #pragma warning restore 612, 618
         }
     }
