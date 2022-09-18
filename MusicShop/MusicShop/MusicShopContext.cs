@@ -10,6 +10,7 @@ namespace MusicShop
         public DbSet<User> Users { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Edition> Editions { get; set; }
+        public DbSet<Genre> Genres { get; set; }
         public MusicShopContext() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -22,6 +23,7 @@ namespace MusicShop
             modelBuilder.ApplyConfiguration(new AuthorConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new EditionConfiguration());
+            modelBuilder.ApplyConfiguration(new GenreConfiguration());
         }
     }
 }

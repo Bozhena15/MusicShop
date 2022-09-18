@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicShop;
 
@@ -11,9 +12,10 @@ using MusicShop;
 namespace MusicShop.Migrations
 {
     [DbContext(typeof(MusicShopContext))]
-    partial class MusicShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220918170015_GenreTable")]
+    partial class GenreTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,7 +87,7 @@ namespace MusicShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("genres");
                 });
 
             modelBuilder.Entity("MusicShop.Models.User", b =>
