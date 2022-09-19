@@ -10,5 +10,6 @@ namespace MusicShop.Models
     {
         public int Id { get; set; }
         public string MusicStyle { get; set; }
+        public List<Plate> Plates { get; set; }
     }
 }

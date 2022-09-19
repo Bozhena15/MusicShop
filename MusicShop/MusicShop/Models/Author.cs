@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -14,6 +15,7 @@ namespace MusicShop
         public string Surname { get; set; }
         public string Pseudonym { get; set; }
         public DateTime Birthdaydate { get; set; }
+        public List<Plate> Plates { get; set; }
 
     }
 }
