@@ -14,7 +14,7 @@ namespace MusicShop.Services
         
         public GenreService( MusicShopContext musicShopContext)
         {
-            musicShopContext = _musicShopContext;
+            _musicShopContext = musicShopContext;
         }
 
         public IEnumerable<Genre> GetGenres()
