@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicShop;
 
@@ -11,9 +12,10 @@ using MusicShop;
 namespace MusicShop.Migrations
 {
     [DbContext(typeof(MusicShopContext))]
-    partial class MusicShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220919183551_AddPlate")]
+    partial class AddPlate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,22 +196,6 @@ namespace MusicShop.Migrations
                 {
                     b.Navigation("Plates");
                 });
-
-            modelBuilder.Entity("MusicShop.Models.UserOrder", b =>
-            {
-                b.HasOne("MusicShop.Models.User", "User")
-                    .WithMany("userOrders")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.Navigation("User");
-            });
-
-            modelBuilder.Entity("MusicShop.Models.User", b =>
-            {
-                b.Navigation("userOrders");
-            });
 #pragma warning restore 612, 618
         }
     }
