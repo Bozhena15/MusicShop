@@ -1,7 +1,6 @@
 ﻿using MusicShop.Configuration;
 using MusicShop.Models;
 using Microsoft.EntityFrameworkCore;
-using MusicShop.Models;
 
 namespace MusicShop
 {
