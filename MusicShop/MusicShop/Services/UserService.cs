@@ -34,10 +34,9 @@ namespace MusicShop.Services
         public void DeleteUser(int id)
         {
             var user = _musicShopContext.Users.FirstOrDefault(x => x.Id == id);
-
             if (user == null)
-
                 throw new NullReferenceException(nameof(user));
+
             _musicShopContext.Users.Remove(user);
             _musicShopContext.SaveChanges();
         }
