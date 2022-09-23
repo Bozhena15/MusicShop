@@ -34,7 +34,6 @@ namespace MusicShop.Services
         public void DelteUser(int id)
         {
             var edition = _musicShopContext.Editions.FirstOrDefault(x => x.Id == id);
-
             if (edition == null)
                 throw new NullReferenceException(nameof(edition));
 
