@@ -25,9 +25,8 @@ namespace MusicShop.Services
         public void AddNewUser(User user)
         {
             if(user == null)
-            {
                 throw new NullReferenceException(nameof(user));
-            }
+            
             _musicShopContext.Users.Add(user);
             _musicShopContext.SaveChanges();
         }
@@ -37,9 +36,9 @@ namespace MusicShop.Services
             var user = _musicShopContext.Users.FirstOrDefault(x => x.Id == id);
             if (user == null)
                 throw new NullReferenceException(nameof(user));
+
             _musicShopContext.Users.Remove(user);
             _musicShopContext.SaveChanges();
         }
-
     }
 }
