@@ -9,19 +9,26 @@ namespace MusicShop.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "UserOrder",
+                name: "UserOrders",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlateCount = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    PlateId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    PlateCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserOrder", x => x.Id);
+                    table.PrimaryKey("PK_UserOrders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserOrder_Users_UserId",
+                        name: "FK_UserOrders_Plates_PlateId",
+                        column: x => x.PlateId,
+                        principalTable: "Plates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserOrders_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -29,15 +36,20 @@ namespace MusicShop.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserOrder_UserId",
-                table: "UserOrder",
+                name: "IX_UserOrders_PlateId",
+                table: "UserOrders",
+                column: "PlateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserOrders_UserId",
+                table: "UserOrders",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UserOrder");
+                name: "UserOrders");
         }
     }
 }

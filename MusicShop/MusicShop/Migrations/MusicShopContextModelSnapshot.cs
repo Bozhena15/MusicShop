@@ -153,6 +153,32 @@ namespace MusicShop.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("MusicShop.Models.UserOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("PlateCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlateId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlateId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserOrders");
+                });
+
             modelBuilder.Entity("MusicShop.Models.Plate", b =>
                 {
                     b.HasOne("MusicShop.Author", "Author")
@@ -180,6 +206,25 @@ namespace MusicShop.Migrations
                     b.Navigation("Genre");
                 });
 
+            modelBuilder.Entity("MusicShop.Models.UserOrder", b =>
+                {
+                    b.HasOne("MusicShop.Models.Plate", "Plate")
+                        .WithMany("UserOrders")
+                        .HasForeignKey("PlateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MusicShop.Models.User", "User")
+                        .WithMany("userOrders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Plate");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MusicShop.Author", b =>
                 {
                     b.Navigation("Plates");
@@ -195,21 +240,15 @@ namespace MusicShop.Migrations
                     b.Navigation("Plates");
                 });
 
-            modelBuilder.Entity("MusicShop.Models.UserOrder", b =>
-            {
-                b.HasOne("MusicShop.Models.User", "User")
-                    .WithMany("userOrders")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.Navigation("User");
-            });
+            modelBuilder.Entity("MusicShop.Models.Plate", b =>
+                {
+                    b.Navigation("UserOrders");
+                });
 
             modelBuilder.Entity("MusicShop.Models.User", b =>
-            {
-                b.Navigation("userOrders");
-            });
+                {
+                    b.Navigation("userOrders");
+                });
 #pragma warning restore 612, 618
         }
     }

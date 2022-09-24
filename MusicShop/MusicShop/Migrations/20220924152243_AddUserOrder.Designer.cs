@@ -12,8 +12,8 @@ using MusicShop;
 namespace MusicShop.Migrations
 {
     [DbContext(typeof(MusicShopContext))]
-    [Migration("20220920175051_AddDbSetUserOrder")]
-    partial class AddDbSetUserOrder
+    [Migration("20220924152243_AddUserOrder")]
+    partial class AddUserOrder
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -90,6 +90,50 @@ namespace MusicShop.Migrations
                     b.ToTable("Genres");
                 });
 
+            modelBuilder.Entity("MusicShop.Models.Plate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EditionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PlateCost")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlatePrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TrackCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Year")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("EditionId");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("Plates");
+                });
+
             modelBuilder.Entity("MusicShop.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -122,25 +166,85 @@ namespace MusicShop.Migrations
                     b.Property<int>("PlateCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("PlateId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PlateId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("UserOrders");
                 });
 
+            modelBuilder.Entity("MusicShop.Models.Plate", b =>
+                {
+                    b.HasOne("MusicShop.Author", "Author")
+                        .WithMany("Plates")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MusicShop.Models.Edition", "Edition")
+                        .WithMany("Plates")
+                        .HasForeignKey("EditionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MusicShop.Models.Genre", "Genre")
+                        .WithMany("Plates")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Edition");
+
+                    b.Navigation("Genre");
+                });
+
             modelBuilder.Entity("MusicShop.Models.UserOrder", b =>
                 {
+                    b.HasOne("MusicShop.Models.Plate", "Plate")
+                        .WithMany("UserOrders")
+                        .HasForeignKey("PlateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MusicShop.Models.User", "User")
                         .WithMany("userOrders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Plate");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MusicShop.Author", b =>
+                {
+                    b.Navigation("Plates");
+                });
+
+            modelBuilder.Entity("MusicShop.Models.Edition", b =>
+                {
+                    b.Navigation("Plates");
+                });
+
+            modelBuilder.Entity("MusicShop.Models.Genre", b =>
+                {
+                    b.Navigation("Plates");
+                });
+
+            modelBuilder.Entity("MusicShop.Models.Plate", b =>
+                {
+                    b.Navigation("UserOrders");
                 });
 
             modelBuilder.Entity("MusicShop.Models.User", b =>
