@@ -20,5 +20,6 @@ namespace MusicShop.Models
         public Genre Genre { get; set; }
         public Edition Edition { get; set; }
         public Author Author { get; set; }
+        public List<UserOrder> UserOrders { get; set; }
     }
 }

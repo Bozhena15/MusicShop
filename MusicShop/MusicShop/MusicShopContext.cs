@@ -11,6 +11,7 @@ namespace MusicShop
         public DbSet<Edition> Editions { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Plate> Plates { get; set; }
+        public DbSet<UserOrder> UserOrders { get; set; }
         public MusicShopContext() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -24,6 +25,7 @@ namespace MusicShop
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new EditionConfiguration());
             modelBuilder.ApplyConfiguration(new GenreConfiguration());
+            modelBuilder.ApplyConfiguration(new UserOrderConfiguration());
             modelBuilder.ApplyConfiguration(new PlateConfiguration());
         }
     }
