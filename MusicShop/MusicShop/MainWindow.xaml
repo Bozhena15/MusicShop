@@ -7,6 +7,72 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <Button x:Name="AuthorsButton" Click="BtnOpenAuthors" Content="Authors" FontSize="22" Height="65" Width="350" >
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="10" Background="#463190">
+                        <TextBlock Text="Authors" Foreground="White" HorizontalAlignment="Center"                                                                                      Margin="0,5,0,0"                                           Height="40"                                           FontSize="20"></TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="EditionButton" Click="BtnOpenEditions" Content="Editions" FontSize="22" Height="65" Width="350" Grid.Row="1">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="10" Background="#463190">
+                        <TextBlock Text="Editions" Foreground="White" HorizontalAlignment="Center"                                                                                      Margin="0,5,0,0"                                           Height="40"                                           FontSize="20"></TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="GenreButton" Click="BtnOpenGenres" Content="Genres" FontSize="22" Height="65" Width="350" Grid.Row="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="10" Background="#463190">
+                        <TextBlock Text="Genres" Foreground="White" HorizontalAlignment="Center"                                                                                      Margin="0,5,0,0"                                           Height="40"                                           FontSize="20"></TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="PlatesButton" Click="BtnOpenPlates" Content="Plates" FontSize="22" Height="65" Width="350" Grid.Row="0" Grid.Column="1">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="10" Background="#463190">
+                        <TextBlock Text="Plates" Foreground="White" HorizontalAlignment="Center"                                                                                      Margin="0,5,0,0"                                           Height="40"                                           FontSize="20"></TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="OrdernButton" Click="BtnOpenOrders" Content="Orders" FontSize="22" Height="65" Width="350" Grid.Row="1" Grid.Column="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="10" Background="#463190">
+                        <TextBlock Text="Orders" Foreground="White" HorizontalAlignment="Center"                                                                                      Margin="0,5,0,0"                                           Height="40"                                           FontSize="20"></TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="UserButton" Click="BtnOpenUsers" Content="Users" FontSize="22" Height="65" Width="350" Grid.Row="2" Grid.Column="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="10" Background="#463190">
+                        <TextBlock Text="Users" Foreground="White" HorizontalAlignment="Center"                                                                                      Margin="0,5,0,0"                                           Height="40"                                           FontSize="20"></TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
     </Grid>
 </Window>

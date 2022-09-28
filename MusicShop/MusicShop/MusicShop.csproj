@@ -9,6 +9,12 @@
 
   <ItemGroup>
     <Folder Include="Helper\" />
+    <Folder Include="Windows\Authors\" />
+    <Folder Include="Windows\Editions\" />
+    <Folder Include="Windows\Genres\" />
+    <Folder Include="Windows\UserOrders\" />
+    <Folder Include="Windows\Users\" />
+    <Folder Include="Windows\Plates\" />
   </ItemGroup>
 
   <ItemGroup>
