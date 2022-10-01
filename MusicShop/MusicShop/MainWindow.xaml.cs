@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MusicShop.Windows;
 
 namespace MusicShop
 {
@@ -20,9 +21,43 @@ namespace MusicShop
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MusicShopContext musicShopContext;
+        private Windows.Users.UsersWindow usersWindow;
         public MainWindow()
         {
             InitializeComponent();
+            musicShopContext = new MusicShopContext();
+            usersWindow = new Windows.Users.UsersWindow(musicShopContext);
+        }
+
+        private void BtnOpenUsers(object sender, RoutedEventArgs e)
+        {
+            usersWindow.Show();
+        }
+
+        private void BtnOpenGenres(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnOpenEditions(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnOpenOrders(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnOpenPlates(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnOpenAuthors(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
